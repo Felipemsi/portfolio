@@ -6,8 +6,6 @@ Created on Wed Jun 29 10:04:14 2022
 @author: felipems
 """
 import numpy as np
-import os
-# from decimal import Decimal, getcontext
 
 # -----------------------------------------------------------------------------
 class Lattice():
