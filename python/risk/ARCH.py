@@ -6,6 +6,8 @@ Created on Sun Oct  9 12:18:34 2022
 @author: felipems
 """
 
+# Using ARCH(p) model in a time series
+
 import pandas as pd
 from arch import arch_model
 
