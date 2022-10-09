@@ -14,6 +14,8 @@ from arch import arch_model
 df = pd.read_csv('MSFT_2006-01-01_to_2018-01-01.csv')
 df.columns = ['date', 'open', 'high', 'low', 'close', 'volume', 'name']
 
-am = arch_model(df.close[0:], mean='Constant', vol='ARCH', p=2, dist='Normal')
+time_serie = df.close[0:] - df.open[0:]
+
+am = arch_model(time_serie, mean='Constant', vol='ARCH', p=2, dist='Normal')
 results_arch = am.fit(update_freq=3)
 results_arch.summary()
