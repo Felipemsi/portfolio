@@ -9,13 +9,13 @@ Created on Sun Aug  7 10:57:48 2022
 import numpy as np
 import math as math
 
-
+# Computes the middle point in the interval
 # x_1 + (x_2 - x_1)/2 is used to avoid error from round-off.
 # (x_1 + x_2) / 2 can return a value out of [x_1,x_2] interval
 def middle_point(x_1, x_2):
     return x_1 + (x_2 - x_1)/2
 
-
+# finds the section of the interval [a,b] that has the root
 def find_section(f, a, b):
     m = middle_point(a, b)
     if (f(m) == 0):
@@ -44,14 +44,15 @@ def bisection_method(f, interval, tolerance):
 # find zeros
 def main_bisection_method(f, a, b, tolerance=1.0e-5, interval_steps=0.005):
     intervals = find_intervals(f, a, b, interval_steps)
-
+    # check for zeros in the interval
     if not intervals:
         print("No change of sign found in [{}, {}]".format(a, b))
         return
-
+    # sigficative figures for the computed root
     f_sig_figures = math.ceil(-np.log10(tolerance))
     result = []
-
+    
+    # main algorithm
     for i, interval in enumerate(intervals):
         a = interval[0]
         b = interval[1]
@@ -72,7 +73,8 @@ def bisection_max_error(a, b, iterations):
     sig_figures = math.ceil(- np.log10(x_error))
     return x_error, sig_figures
 
-
+# check for change in sign of f in the interval to guarantee there is a zero
+# return the intervals with the size of step
 def find_intervals(f, a, b, dx=0.005):
     points = np.arange(a, b, step=dx)
     sections = [(x, x+dx) for x in points
