@@ -30,7 +30,7 @@ def bisection_method(f, interval, tolerance):
     a_i = interval[0]
     b_i = interval[1]
     c = middle_point(b_i, a_i)
-    error = abs(c)
+    error = abs(f(c))
     iterations = 0
     while not (error < tolerance):
         iterations += 1
